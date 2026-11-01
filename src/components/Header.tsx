@@ -102,6 +102,7 @@ export function Header() {
         aria-hidden={!open}
         inert={!open}
       >
+        <p className="mobile-nav-label">Menu</p>
         {links.map((link, index) => (
           <Link
             key={link.href}
