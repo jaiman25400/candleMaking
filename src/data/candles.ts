@@ -64,7 +64,7 @@ export const candles: Candle[] = [
     burn: "About 45 hours",
     wax: "Soy blend",
     image: "/images/cloth.jpg",
-    focus: "center 72%",
+    focus: "center bottom",
     notes: { top: "Lily petal", heart: "Clean cotton", base: "Soft musk" },
     story:
       "Sun on just-washed linen. Airy enough for daytime, quiet enough to leave burning while you read.",

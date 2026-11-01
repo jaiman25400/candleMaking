@@ -71,14 +71,16 @@ export default function HomePage() {
           </div>
           <div className="hero-stage">
             <div className="hero-frame">
-              <Image
-                src={evening.image}
-                alt="A lit jar candle glowing beside warm string lights"
-                fill
-                priority
-                sizes="(max-width: 860px) 100vw, 46vw"
-                style={{ objectPosition: evening.focus }}
-              />
+              <div className="hero-photo">
+                <Image
+                  src={evening.image}
+                  alt="A lit jar candle glowing beside warm string lights"
+                  fill
+                  priority
+                  sizes="(max-width: 860px) 100vw, 46vw"
+                  style={{ objectPosition: evening.focus }}
+                />
+              </div>
               <p className="hero-caption">{evening.name}</p>
             </div>
             <div className="hero-float">
@@ -96,10 +98,17 @@ export default function HomePage() {
 
       <div className="marquee" aria-hidden="true">
         <div className="marquee-track">
-          {[...scents, ...scents].map((scent, index) => (
-            <span key={`${scent}-${index}`}>
-              {scent} <i>·</i>
-            </span>
+          {[0, 1].map((copy) => (
+            <div className="marquee-group" key={copy}>
+              {Array.from({ length: 3 }, () => scents)
+                .flat()
+                .map((scent, index) => (
+                  <span key={`${copy}-${scent}-${index}`}>
+                    {scent}
+                    <i>·</i>
+                  </span>
+                ))}
+            </div>
           ))}
         </div>
       </div>
@@ -120,11 +129,9 @@ export default function HomePage() {
             </div>
           </Reveal>
           <div className="edit-grid">
-            <ProductCard candle={featured[0]} large />
-            <div className="edit-side">
-              <ProductCard candle={featured[1]} />
-              <ProductCard candle={featured[2]} />
-            </div>
+            {featured.map((candle) => (
+              <ProductCard key={candle.slug} candle={candle} />
+            ))}
           </div>
         </div>
       </section>
@@ -180,7 +187,7 @@ export default function HomePage() {
               </Link>
             </div>
           </Reveal>
-          <div className="catalog">
+          <div className={rest.length % 3 === 2 ? "catalog catalog-pair" : "catalog"}>
             {rest.map((candle) => (
               <ProductCard key={candle.slug} candle={candle} />
             ))}
