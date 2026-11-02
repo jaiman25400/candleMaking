@@ -148,16 +148,13 @@ export default function HomePage() {
       <figure className="quote">
         <Image
           className="fill-img"
-          src="/images/lavender.jpg"
-          alt="Lavender Sprig, a candle with dried lavender and rosemary"
+          src="/images/evening-light.jpg"
+          alt=""
           fill
           sizes="100vw"
         />
-        <div className="quote-veil" />
-        <div>
-          <blockquote>A candle should feel like the room took a breath.</blockquote>
-          <figcaption>{site.fullName}</figcaption>
-        </div>
+        <blockquote className="sr-only">A candle should feel like the room took a breath.</blockquote>
+        <figcaption>{site.fullName}</figcaption>
       </figure>
 
       <section className="section">

@@ -15,6 +15,8 @@ export type Candle = {
   story: string;
   /** False when size and burn are still waiting on Honey. */
   confirmed: boolean;
+  /** This design is poured in one scent, so the flavour list stays off the page. */
+  lockedScent?: boolean;
 };
 
 export const flavours = [
@@ -104,6 +106,26 @@ export const candles: Candle[] = [
     story:
       "Juicy citrus and pastry cream, like a burst of sunshine set on the table.",
     confirmed: true,
+  },
+  {
+    slug: "golden-mango",
+    name: "Golden Mango & Cream",
+    kind: "design",
+    scent: "Ripe mango, sweet cream, vanilla sugar",
+    size: "9 oz rocks tumbler (~7.5 oz wax)",
+    burn: "40–45 hours",
+    wax: "Two-tone soy with gel ice",
+    image: "/images/golden-mango.jpg",
+    focus: "center center",
+    notes: {
+      top: "Juicy mango and papaya",
+      heart: "Sweet cream and peach blossom",
+      base: "Vanilla bean and cane sugar",
+    },
+    story:
+      "A luscious, sun-drenched escape that fills the room with the vibrant sweetness of fresh mangoes swirled into chilled, velvety cream.",
+    confirmed: true,
+    lockedScent: true,
   },
   {
     slug: "blush-heart",

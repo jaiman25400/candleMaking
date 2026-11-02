@@ -22,13 +22,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: candle.name,
     description:
-      candle.kind === "design"
+      candle.kind === "design" && !candle.lockedScent
         ? `${candle.name} is a handmade candle design from ${site.fullName}. Choose a flavour when you order.`
         : `${candle.name} is a handmade candle scented with ${candle.scent}. A small-batch homemade candle from ${site.fullName}.`,
     alternates: { canonical: `/shop/${candle.slug}/` },
     openGraph: {
       title: `${candle.name} · handmade candle`,
-      description: candle.kind === "design" ? candle.story : `${candle.scent}. ${candle.story}`,
+      description:
+        candle.kind === "design" && !candle.lockedScent
+          ? candle.story
+          : `${candle.scent}. ${candle.story}`,
       images: [{ url: candle.image, alt: `${candle.name} handmade candle` }],
     },
   };
@@ -48,7 +51,7 @@ export default async function CandlePage({ params }: Props) {
           "@type": "Product",
           name: candle.name,
           description:
-            candle.kind === "design"
+            candle.kind === "design" && !candle.lockedScent
               ? `${candle.story} Choose a flavour when you order.`
               : `${candle.story} Handmade candle scented with ${candle.scent}.`,
           image: `${pagesUrl}${candle.image}`,
@@ -72,7 +75,10 @@ export default async function CandlePage({ params }: Props) {
             {
               "@type": "PropertyValue",
               name: "Scent",
-              value: candle.kind === "design" ? "Chosen from the flavour list" : candle.scent,
+              value:
+                candle.kind === "design" && !candle.lockedScent
+                  ? "Chosen from the flavour list"
+                  : candle.scent,
             },
           ],
         }}
@@ -116,7 +122,7 @@ export default async function CandlePage({ params }: Props) {
             <p className="lede" style={{ marginBottom: "1.4rem" }}>
               {candle.story}
             </p>
-            {candle.kind === "simple" ? (
+            {candle.kind === "simple" || candle.lockedScent ? (
               <dl className="notes">
                 <div>
                   <dt>Top</dt>
@@ -132,7 +138,7 @@ export default async function CandlePage({ params }: Props) {
                 </div>
               </dl>
             ) : null}
-            {candle.kind === "design" ? (
+            {candle.kind === "design" && !candle.lockedScent ? (
               <FlavourOrder candleName={candle.name} />
             ) : (
               <div className="hero-actions">

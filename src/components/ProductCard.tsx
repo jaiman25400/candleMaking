@@ -16,7 +16,7 @@ export function ProductCard({ candle, large = false }: { candle: Candle; large?:
       <div className="card-copy">
         <p className="card-kicker">{candle.kind === "design" ? "Design" : "In stock"}</p>
         <h3>{candle.name}</h3>
-        <p>{candle.kind === "design" ? "Choose a flavour" : candle.scent}</p>
+        <p>{candle.kind === "design" && !candle.lockedScent ? "Choose a flavour" : candle.scent}</p>
         <p className="card-price">{formatPrice(candlePrice(candle.kind))}</p>
         <span className="card-more">
           View jar
