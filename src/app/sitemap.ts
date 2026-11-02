@@ -5,7 +5,7 @@ import { pagesUrl } from "@/lib/site";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ["/", "/shop/", "/about/", "/contact/", ...candles.map((candle) => `/shop/${candle.slug}/`)];
+  const paths = ["/", "/shop/", "/custom/", "/about/", "/contact/", ...candles.map((candle) => `/shop/${candle.slug}/`)];
   return paths.map((path) => ({
     url: `${pagesUrl}${path}`,
     changeFrequency: "weekly",

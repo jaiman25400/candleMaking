@@ -3,27 +3,16 @@ import Link from "next/link";
 import { ProductCard } from "@/components/ProductCard";
 import { Reveal } from "@/components/Reveal";
 import { ArrowIcon, InstagramIcon } from "@/components/Icons";
-import { candles } from "@/data/candles";
+import { candles, flavours } from "@/data/candles";
 import { site } from "@/lib/site";
 
-const scents = [
-  "honey",
-  "cedarwood",
-  "vanilla bean",
-  "amber",
-  "linen",
-  "smoked birch",
-  "fig",
-  "oat milk",
-  "clove",
-  "white tea",
-];
+const scents = flavours.map((flavour) => flavour.toLowerCase());
 
 export default function HomePage() {
-  const evening = candles[0];
-  const sugar = candles.find((candle) => candle.slug === "brown-sugar") ?? candles[7];
-  const featured = [candles[0], candles[7], candles[2]];
-  const rest = candles.filter((candle) => !featured.some((item) => item.slug === candle.slug));
+  const featuredSlugs = ["iced-coffee", "matcha-berry", "heirloom-knit"];
+  const featured = featuredSlugs.map((slug) => candles.find((candle) => candle.slug === slug)!);
+  const float = candles.find((candle) => candle.slug === "heirloom-knit")!;
+  const rest = candles.filter((candle) => !featuredSlugs.includes(candle.slug));
 
   return (
     <>
@@ -73,23 +62,21 @@ export default function HomePage() {
             <div className="hero-frame">
               <div className="hero-photo">
                 <Image
-                  src={evening.image}
-                  alt="A lit jar candle glowing beside warm string lights"
+                  src="/images/fruit-pour.jpg"
+                  alt="Four fruit candles — orange, strawberry, raspberry, and blueberry — on a wood round"
                   fill
                   priority
                   sizes="(max-width: 860px) 100vw, 46vw"
-                  style={{ objectPosition: evening.focus }}
                 />
               </div>
-              <p className="hero-caption">{evening.name}</p>
+              <p className="hero-caption">Fruit pours</p>
             </div>
             <div className="hero-float">
               <Image
-                src={sugar.image}
-                alt="An amber glass candle on a warm two-tone surface"
+                src={float.image}
+                alt={`${float.name}, an amber jar candle`}
                 fill
                 sizes="20vw"
-                style={{ objectPosition: sugar.focus }}
               />
             </div>
           </div>
@@ -161,8 +148,8 @@ export default function HomePage() {
       <figure className="quote">
         <Image
           className="fill-img"
-          src="/images/hands.jpg"
-          alt=""
+          src="/images/lavender.jpg"
+          alt="Lavender Sprig, a candle with dried lavender and rosemary"
           fill
           sizes="100vw"
         />
@@ -204,8 +191,8 @@ export default function HomePage() {
           <div className="steps">
             <article>
               <span>01</span>
-              <h3>Choose a scent</h3>
-              <p>Wander the collection and find the jar that sounds like your room.</p>
+              <h3>Choose a look</h3>
+              <p>Pick a design and a flavour, one of the jars already poured, or mix your own.</p>
             </article>
             <article>
               <span>02</span>

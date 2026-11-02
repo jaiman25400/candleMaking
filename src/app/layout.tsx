@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     url: pagesUrl,
     siteName: site.fullName,
     locale: "en_US",
-    images: [{ url: "/images/evening.jpg", alt: "A lit handmade soy candle in a glass jar" }],
+    images: [{ url: "/images/fruit-pour.jpg", alt: "Four handmade fruit candles from Cozy Corner by Honey" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.fullName} · handmade candles`,
     description: site.description,
-    images: ["/images/evening.jpg"],
+    images: ["/images/fruit-pour.jpg"],
   },
   robots: { index: true, follow: true },
 };
@@ -68,7 +68,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             name: site.fullName,
             url: pagesUrl,
             description: site.description,
-            image: `${pagesUrl}/images/evening.jpg`,
+            image: `${pagesUrl}/images/fruit-pour.jpg`,
             sameAs: [site.instagram],
           }}
         />

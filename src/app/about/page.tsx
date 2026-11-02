@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Handmade candle studio",
   description:
-    "The studio behind Cozy Corners by Honey. Small-batch handmade and homemade candles, poured for the quiet corners of a home.",
+    "The studio behind Cozy Corner by Honey. Small-batch handmade and homemade candles, poured for the quiet parts of a home.",
   alternates: { canonical: "/about/" },
 };
 
@@ -24,7 +24,7 @@ export default function AboutPage() {
       <section className="wrap story-grid" style={{ paddingBottom: "4rem" }}>
         <div className="story-copy prose">
           <p>
-            Cozy Corners started as a small making practice: wax, wick, and a scent that feels like
+            Cozy Corner started as a small making practice: wax, wick, and a scent that feels like
             someone turned the lights down on purpose. The jars are poured in batches small enough to
             watch.
           </p>
@@ -45,18 +45,18 @@ export default function AboutPage() {
         </div>
         <figure className="still">
           <Image
-            src="/images/honey.jpg"
-            alt="A jar of honey beside citrus and flowers"
+            src="/images/daisy.jpg"
+            alt="Daisy Day, a white candle topped with a wax daisy"
             fill
             sizes="(max-width: 860px) 100vw, 42vw"
           />
-          <figcaption>A little honey, in the name</figcaption>
+          <figcaption>Daisy Day</figcaption>
         </figure>
       </section>
 
       <section className="wrap" style={{ paddingBottom: "4rem" }}>
         <div className="portrait-break">
-          <Image className="fill-img" src="/images/hands.jpg" alt="Hands warming a lit candle" fill sizes="100vw" />
+          <Image className="fill-img" src="/images/heirloom-knit.jpg" alt="Heirloom Knit, an amber jar candle" fill sizes="100vw" />
           <div className="quote-veil" />
           <p>Warmth you can hold, then set back down on the table.</p>
         </div>

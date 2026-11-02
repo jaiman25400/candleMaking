@@ -1,9 +1,10 @@
-export type ScentFamily = "Warm" | "Fresh" | "Wood" | "Sweet";
+export type CandleKind = "design" | "simple";
 
 export type Candle = {
   slug: string;
   name: string;
-  family: ScentFamily;
+  kind: CandleKind;
+  /** Fixed scent for a simple jar. A short description of the look for a design. */
   scent: string;
   size: string;
   burn: string;
@@ -12,132 +13,214 @@ export type Candle = {
   focus: string;
   notes: { top: string; heart: string; base: string };
   story: string;
+  /** False when size and burn are still waiting on Honey. */
+  confirmed: boolean;
 };
 
-export const families: Array<"All" | ScentFamily> = [
-  "All",
-  "Warm",
-  "Fresh",
-  "Wood",
-  "Sweet",
-];
+export const flavours = [
+  "Fresh Orange",
+  "Peach",
+  "Sandalwood Vanilla",
+  "Lemon Mint",
+  "Jasmine",
+  "Rosemary",
+  "By the Fireplace",
+  "Ocean Breeze",
+  "Nordic Berry Birch",
+  "Cinnamon Bourbon",
+  "Citrus",
+  "Fresh Lavender",
+  "Rose & Peach",
+  "Holiday Spice",
+] as const;
 
-/**
- * Placeholder collection. Swap names, notes, and photos in this file
- * when Honey's real candles are ready to photograph.
- */
+export const priceByKind: Record<CandleKind, number> = {
+  design: 22,
+  simple: 18,
+};
+
+export function candlePrice(kind: CandleKind) {
+  return priceByKind[kind];
+}
+
+export function formatPrice(amount: number) {
+  return `$${amount} CAD`;
+}
+
 export const candles: Candle[] = [
   {
-    slug: "evening-honey",
-    name: "Evening Honey",
-    family: "Warm",
-    scent: "Honey, oat milk, vanilla",
-    size: "8 oz",
-    burn: "About 45 hours",
-    wax: "Soy blend",
-    image: "/images/evening.jpg",
-    focus: "center 58%",
-    notes: { top: "Warm honey", heart: "Oat milk", base: "Vanilla bean" },
+    slug: "iced-coffee",
+    name: "Iced Coffee",
+    kind: "design",
+    scent: "A coffee glass, with ice and a cream layer",
+    size: "10 oz tumbler (~8.5 oz wax)",
+    burn: "45–50 hours",
+    wax: "Dual-pour soy wax with gel ice",
+    image: "/images/iced-coffee.jpg",
+    focus: "center 42%",
+    notes: {
+      top: "Dark roast and cacao nibs",
+      heart: "Frosted milk and hazelnut",
+      base: "Molasses and whipped vanilla",
+    },
     story:
-      "The house candle. Soft, golden, and a little milky — the one you light when the day is finally done talking.",
+      "The rich rush of a neighborhood café on a sunny morning, held in a glass of wax and ice.",
+    confirmed: true,
   },
   {
-    slug: "amber-kitchen",
-    name: "Amber Kitchen",
-    family: "Warm",
-    scent: "Cinnamon, orange peel, clove",
-    size: "8 oz",
-    burn: "About 45 hours",
-    wax: "Soy blend",
-    image: "/images/amber.jpg",
+    slug: "matcha-berry",
+    name: "Matcha Berry",
+    kind: "design",
+    scent: "Matcha poured over strawberry, with ice",
+    size: "10 oz tumbler (~8.5 oz wax)",
+    burn: "45–50 hours",
+    wax: "Layered soy wax with gel ice",
+    image: "/images/matcha-berry.jpg",
+    focus: "center 42%",
+    notes: {
+      top: "Fresh strawberry and lime",
+      heart: "Japanese matcha and jasmine",
+      base: "Steamed oat milk and sweet cane",
+    },
+    story:
+      "A layered morning treat: earthy green tea, pink berries, and cool cream.",
+    confirmed: true,
+  },
+  {
+    slug: "orange-slice",
+    name: "Orange Slice",
+    kind: "design",
+    scent: "Mandarin pieces set over cream",
+    size: "10 oz tumbler (~8.8 oz wax)",
+    burn: "45–50 hours",
+    wax: "Soy cream, gel wax, and fruit pieces",
+    image: "/images/orange-slice.jpg",
+    focus: "center 42%",
+    notes: {
+      top: "Satsuma mandarin and clementine zest",
+      heart: "Candied orange peel and neroli",
+      base: "Sweet cream and light amber",
+    },
+    story:
+      "Juicy citrus and pastry cream, like a burst of sunshine set on the table.",
+    confirmed: true,
+  },
+  {
+    slug: "blush-heart",
+    name: "Blush Heart",
+    kind: "design",
+    scent: "Pink and white wax, hearts on top",
+    size: "9 oz tumbler (~7.7 oz wax)",
+    burn: "40–45 hours",
+    wax: "Soy wax with gel hearts",
+    image: "/images/blush-heart.jpg",
+    focus: "center 40%",
+    notes: {
+      top: "Sugared strawberries",
+      heart: "Condensed milk and peach blossom",
+      base: "Vanilla chiffon",
+    },
+    story:
+      "Pastel and tender, like a chilled strawberry milk at a quiet counter.",
+    confirmed: true,
+  },
+  {
+    slug: "heirloom-knit",
+    name: "Heirloom Knit",
+    kind: "simple",
+    scent: "Cashmere, warm cedar, folded wool",
+    size: "9 oz amber jar (~7 oz wax)",
+    burn: "45–50 hours",
+    wax: "100% soy wax",
+    image: "/images/heirloom-knit.jpg",
     focus: "center center",
-    notes: { top: "Orange peel", heart: "Cinnamon", base: "Clove" },
+    notes: {
+      top: "Soft bergamot and white lily",
+      heart: "Cashmere musk and orris",
+      base: "Virginian cedarwood and sandalwood",
+    },
     story:
-      "A kitchen after something sweet came out of the oven. Bright peel first, then a low spice that stays close.",
+      "The comfort of a hand-knitted blanket while rain taps the window.",
+    confirmed: true,
   },
   {
-    slug: "linen-hour",
-    name: "Linen Hour",
-    family: "Fresh",
-    scent: "Clean cotton, lily, soft musk",
-    size: "8 oz",
-    burn: "About 45 hours",
-    wax: "Soy blend",
-    image: "/images/cloth.jpg",
-    focus: "center bottom",
-    notes: { top: "Lily petal", heart: "Clean cotton", base: "Soft musk" },
-    story:
-      "Sun on just-washed linen. Airy enough for daytime, quiet enough to leave burning while you read.",
-  },
-  {
-    slug: "pale-vessel",
-    name: "Pale Vessel",
-    family: "Fresh",
-    scent: "Bergamot, neroli, pale wood",
-    size: "8 oz",
-    burn: "About 45 hours",
-    wax: "Soy blend",
-    image: "/images/linen.jpg",
-    focus: "center 84%",
-    notes: { top: "Bergamot", heart: "Neroli", base: "Pale wood" },
-    story:
-      "A clean opening, almost like a window cracked in the morning. Citrus first, then a whisper of wood.",
-  },
-  {
-    slug: "cedar-window",
-    name: "Cedar Window",
-    family: "Wood",
-    scent: "Cedar, rain, moss",
-    size: "8 oz",
-    burn: "About 45 hours",
-    wax: "Soy blend",
-    image: "/images/cedar.jpg",
-    focus: "center 70%",
-    notes: { top: "Rain", heart: "Cedar leaf", base: "Moss" },
-    story:
-      "The smell of a wooden window frame after weather. Green, slightly damp, and steady.",
-  },
-  {
-    slug: "night-jar",
-    name: "Night Jar",
-    family: "Wood",
-    scent: "Birch, smoke, black tea",
-    size: "8 oz",
-    burn: "About 45 hours",
-    wax: "Soy blend",
-    image: "/images/night.jpg",
+    slug: "smoked-vanilla-tuberose",
+    name: "Smoked Vanilla & Tuberose",
+    kind: "simple",
+    scent: "White tuberose, bourbon vanilla, midnight embers",
+    size: "9 oz amber jar (~7 oz wax)",
+    burn: "45–50 hours",
+    wax: "100% soy wax",
+    image: "/images/smoked-vanilla.jpg",
     focus: "center center",
-    notes: { top: "Black tea", heart: "Birch", base: "Soft smoke" },
+    notes: {
+      top: "Night-blooming jasmine and neroli",
+      heart: "White tuberose and tonka bean",
+      base: "Smoked vanilla bean and amber wood",
+    },
     story:
-      "For the later hour. A little smoke, a little tea, nothing sharp. It glows best when the rest of the lights are low.",
+      "Heady florals sinking into smoke-laced vanilla. An evening candle.",
+    confirmed: true,
   },
   {
-    slug: "fig-and-cream",
-    name: "Fig & Cream",
-    family: "Sweet",
-    scent: "Fig, cream, sandalwood",
-    size: "8 oz",
-    burn: "About 45 hours",
-    wax: "Soy blend",
-    image: "/images/fig.jpg",
-    focus: "68% 74%",
-    notes: { top: "Fig leaf", heart: "Cream", base: "Sandalwood" },
+    slug: "daisy-day",
+    name: "Daisy Day",
+    kind: "design",
+    scent: "A wax daisy in a clear glass",
+    size: "Glass tumbler",
+    burn: "Small batch",
+    wax: "Soy wax",
+    image: "/images/daisy.jpg",
+    focus: "center 40%",
+    notes: { top: "Daisy petal", heart: "Honey", base: "Soft musk" },
     story:
-      "Ripe fig and a cool creaminess, grounded with wood so it never turns candy-sweet.",
+      "A single daisy sitting in the wax. Light, a little sweet, and meant for a sunny corner.",
+    confirmed: false,
   },
   {
-    slug: "brown-sugar",
-    name: "Brown Sugar",
-    family: "Sweet",
-    scent: "Brown sugar, tonka, amber",
-    size: "8 oz",
-    burn: "About 45 hours",
-    wax: "Soy blend",
-    image: "/images/sugar.jpg",
-    focus: "center 60%",
-    notes: { top: "Brown sugar", heart: "Tonka", base: "Amber" },
+    slug: "lavender-sprig",
+    name: "Lavender Sprig",
+    kind: "design",
+    scent: "Dried lavender and rosemary around the wick",
+    size: "Glass tumbler",
+    burn: "Small batch",
+    wax: "Soy wax",
+    image: "/images/lavender.jpg",
+    focus: "center 40%",
+    notes: { top: "Lavender", heart: "Rosemary", base: "Soft herb" },
     story:
-      "Warm sugar, not dessert. A rounded amber that sits in the room instead of shouting across it.",
+      "Dried lavender and a sprig of rosemary around a wooden wick. Quiet, green, and clean.",
+    confirmed: false,
+  },
+  {
+    slug: "cherry-heart",
+    name: "Cherry Heart",
+    kind: "design",
+    scent: "Red hearts under a layer of white wax",
+    size: "Glass tumbler",
+    burn: "Small batch",
+    wax: "Gel pour",
+    image: "/images/cherry-heart.jpg",
+    focus: "center 42%",
+    notes: { top: "Cherry", heart: "Sugar", base: "Vanilla" },
+    story:
+      "Little red hearts suspended under a layer of white wax. Sweet, and a bit playful.",
+    confirmed: false,
+  },
+  {
+    slug: "apples-and-white-cedar",
+    name: "Apples & White Cedar",
+    kind: "simple",
+    scent: "Apple, white cedar, soft musk",
+    size: "Amber jar",
+    burn: "Small batch",
+    wax: "Soy wax",
+    image: "/images/apples-cedar.jpg",
+    focus: "center center",
+    notes: { top: "Apple", heart: "White cedar", base: "Soft musk" },
+    story:
+      "Crisp apple against pale cedar. A jar for the room that wants something clean and woody.",
+    confirmed: false,
   },
 ];
 
@@ -149,10 +232,10 @@ export function relatedCandles(slug: string, count = 3) {
   const current = getCandle(slug);
   if (!current) return candles.slice(0, count);
   const same = candles.filter(
-    (candle) => candle.family === current.family && candle.slug !== slug,
+    (candle) => candle.kind === current.kind && candle.slug !== slug,
   );
   const rest = candles.filter(
-    (candle) => candle.family !== current.family && candle.slug !== slug,
+    (candle) => candle.kind !== current.kind && candle.slug !== slug,
   );
   return [...same, ...rest].slice(0, count);
 }

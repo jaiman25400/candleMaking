@@ -8,6 +8,7 @@ import { InstagramIcon } from "@/components/Icons";
 
 const links = [
   { href: "/shop", label: "Collection" },
+  { href: "/custom", label: "Custom" },
   { href: "/about", label: "Studio" },
   { href: "/contact", label: "Contact" },
 ];

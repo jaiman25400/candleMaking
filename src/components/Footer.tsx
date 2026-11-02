@@ -7,7 +7,7 @@ export function Footer() {
       <div className="wrap footer-grid">
         <div>
           <p className="footer-mark">
-            Cozy Corners
+            Cozy Corner
             <span>by Honey</span>
           </p>
           <p className="footer-note">
@@ -27,20 +27,19 @@ export function Footer() {
         <div>
           <p className="footer-label">Explore</p>
           <Link href="/shop">Collection</Link>
+          <Link href="/custom">Custom</Link>
           <Link href="/about">The studio</Link>
           <Link href="/contact">Contact</Link>
         </div>
         <div>
           <p className="footer-label">A note</p>
           <p className="footer-note">
-            Photos and scent names are stand-ins for now. Honey’s own candles will take their place.
             Ordering, pricing, and delivery are confirmed on Instagram.
           </p>
         </div>
       </div>
       <div className="wrap footer-base">
         <p>© {new Date().getFullYear()} {site.fullName}</p>
-        <p>Placeholder photography via Unsplash and Pexels.</p>
       </div>
     </footer>
   );

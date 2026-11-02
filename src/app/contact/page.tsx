@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Order a handmade candle",
   description:
-    "Ask Cozy Corners by Honey about a handmade candle, a homemade gift, or a scent for your room. Reserve the jar on Instagram.",
+    "Ask Cozy Corner by Honey about a handmade candle, a homemade gift, or a scent for your room. Reserve the jar on Instagram.",
   alternates: { canonical: "/contact/" },
 };
 
@@ -38,7 +38,7 @@ export default function ContactPage() {
             </a>
           </div>
         </div>
-        <ContactForm candles={candles.map((candle) => candle.name)} />
+        <ContactForm candles={[...candles.map((candle) => candle.name), "A custom mix"]} />
       </section>
     </div>
   );

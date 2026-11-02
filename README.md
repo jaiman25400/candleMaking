@@ -1,6 +1,6 @@
-# Cozy Corners by Honey
+# Cozy Corner by Honey
 
-A front-end shop for [Cozy Corners by Honey](https://www.instagram.com/cozy_corners_by_honey/). People browse the candles here and reserve a jar on Instagram. Payments are not set up yet.
+A front-end shop for [Cozy Corner by Honey](https://www.instagram.com/cozy_corners_by_honey/). People browse the candles here and reserve a jar on Instagram. Payments are not set up yet.
 
 Photos and scent names are placeholders. Swap them in `src/data/candles.ts` and `public/images/` when the real collection is photographed.
 
