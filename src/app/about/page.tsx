@@ -6,8 +6,10 @@ import { ArrowIcon } from "@/components/Icons";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Studio",
-  description: "The story behind Cozy Corners by Honey, a small-batch candle studio.",
+  title: "Handmade candle studio",
+  description:
+    "The studio behind Cozy Corners by Honey. Small-batch handmade and homemade candles, poured for the quiet corners of a home.",
+  alternates: { canonical: "/about/" },
 };
 
 export default function AboutPage() {
@@ -16,7 +18,7 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="The studio"
         title="Made for the corner you love."
-        lede="Honey pours candles for the quiet parts of a home — the chair by the window, the kitchen after dinner, the hour when the day finally gets soft."
+        lede="Honey pours handmade candles for the quiet parts of a home — the chair by the window, the kitchen after dinner, the hour when the day finally gets soft."
       />
 
       <section className="wrap story-grid" style={{ paddingBottom: "4rem" }}>

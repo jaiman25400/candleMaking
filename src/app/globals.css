@@ -295,6 +295,8 @@ em { font-style: italic; }
   margin: 2.2rem 0 0;
   padding-top: 1.2rem;
   border-top: 1px solid var(--line);
+  justify-items: center;
+  text-align: center;
 }
 .hero-meta dt {
   font-size: 0.72rem;
@@ -604,11 +606,13 @@ em { font-style: italic; }
 .product-scent { font-size: 1.15rem; color: var(--ink-soft); }
 .facts {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
   margin: 1.6rem 0;
   padding: 1rem 0;
   border-block: 1px solid var(--line);
+  justify-items: center;
+  text-align: center;
 }
 .facts dt {
   font-size: 0.72rem;

@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/ProductCard";
+import { JsonLd } from "@/components/JsonLd";
 import { ArrowIcon, InstagramIcon } from "@/components/Icons";
 import { candles, getCandle, relatedCandles } from "@/data/candles";
-import { site } from "@/lib/site";
+import { pagesUrl, site } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -19,7 +20,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!candle) return { title: "Candle" };
   return {
     title: candle.name,
-    description: `${candle.name} — ${candle.scent}. A hand-poured candle from ${site.fullName}.`,
+    description: `${candle.name} is a handmade soy candle scented with ${candle.scent}. A small-batch homemade candle from ${site.fullName}.`,
+    alternates: { canonical: `/shop/${candle.slug}/` },
+    openGraph: {
+      title: `${candle.name} · handmade candle`,
+      description: `${candle.scent}. ${candle.story}`,
+      images: [{ url: candle.image, alt: `${candle.name} handmade candle` }],
+    },
   };
 }
 
@@ -31,6 +38,24 @@ export default async function CandlePage({ params }: Props) {
 
   return (
     <div className="page">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: candle.name,
+          description: `${candle.story} Handmade soy candle scented with ${candle.scent}.`,
+          image: `${pagesUrl}${candle.image}`,
+          url: `${pagesUrl}/shop/${candle.slug}/`,
+          category: "Handmade candles",
+          material: candle.wax,
+          brand: { "@type": "Brand", name: site.fullName },
+          additionalProperty: [
+            { "@type": "PropertyValue", name: "Size", value: candle.size },
+            { "@type": "PropertyValue", name: "Burn time", value: candle.burn },
+            { "@type": "PropertyValue", name: "Scent", value: candle.scent },
+          ],
+        }}
+      />
       <article className="wrap">
         <Link href="/shop" className="back-link">
           ← Collection

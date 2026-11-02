@@ -19,4 +19,4 @@ The site is a static Next.js export. Pushing to `main` runs `.github/workflows/p
 
 One-time setup: in the GitHub repo, open **Settings → Pages → Build and deployment** and choose **GitHub Actions**.
 
-The live address will be [https://jaiman25400.github.io/candleMaking/](https://jaiman25400.github.io/candleMaking/).
+The live address is [https://candle-making-xi.vercel.app/](https://candle-making-xi.vercel.app/).

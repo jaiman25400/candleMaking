@@ -41,8 +41,8 @@ export default function HomePage() {
               </span>
             </h1>
             <p className="lede">
-              {site.fullName} makes candles for the rooms you actually live in. Soft scent, warm wax,
-              and a glow that stays low.
+              {site.fullName} makes handmade candles for the rooms you actually live in. Soft scent,
+              warm soy wax, and a glow that stays low.
             </p>
             <div className="hero-actions">
               <Link className="btn btn-fill" href="/shop">

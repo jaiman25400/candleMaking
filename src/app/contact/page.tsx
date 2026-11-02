@@ -6,8 +6,10 @@ import { candles } from "@/data/candles";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Write to Cozy Corners by Honey and reserve a candle on Instagram.",
+  title: "Order a handmade candle",
+  description:
+    "Ask Cozy Corners by Honey about a handmade candle, a homemade gift, or a scent for your room. Reserve the jar on Instagram.",
+  alternates: { canonical: "/contact/" },
 };
 
 export default function ContactPage() {

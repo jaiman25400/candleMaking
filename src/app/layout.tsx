@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Outfit } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { JsonLd } from "@/components/JsonLd";
 import { pagesUrl, site } from "@/lib/site";
 import "./globals.css";
 
@@ -21,18 +22,30 @@ const sans = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL(pagesUrl),
   title: {
-    default: site.fullName,
+    default: `Handmade candles · ${site.fullName}`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
+  keywords: [...site.keywords],
+  authors: [{ name: site.fullName, url: site.instagram }],
+  creator: site.fullName,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: site.fullName,
+    title: `${site.fullName} · handmade candles`,
     description: site.description,
     url: pagesUrl,
     siteName: site.fullName,
-    images: [{ url: "/images/evening.jpg", width: 1200, height: 1500, alt: "A lit candle in a glass jar" }],
+    locale: "en_US",
+    images: [{ url: "/images/evening.jpg", alt: "A lit handmade soy candle in a glass jar" }],
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.fullName} · handmade candles`,
+    description: site.description,
+    images: ["/images/evening.jpg"],
+  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
@@ -48,6 +61,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a className="skip" href="#content">
           Skip to content
         </a>
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "OnlineStore",
+            name: site.fullName,
+            url: pagesUrl,
+            description: site.description,
+            image: `${pagesUrl}/images/evening.jpg`,
+            sameAs: [site.instagram],
+          }}
+        />
         <Header />
         <main id="content">{children}</main>
         <Footer />
