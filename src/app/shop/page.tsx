@@ -23,7 +23,7 @@ export default function ShopPage() {
       <PageHeader
         eyebrow="Collection"
         title="A look, then a scent."
-        lede="The designs are the glass you see. You choose the flavour. Three jars are already poured, with the scent on the label."
+        lede="Some designs are poured in one scent. The rest let you choose the flavour. Three jars are already poured, with the scent on the label."
       />
       <div className="wrap" style={{ paddingBottom: "4rem" }}>
         <JsonLd
@@ -59,7 +59,7 @@ export default function ShopPage() {
               <p className="eyebrow">Designs</p>
               <h2>Choose the glass.</h2>
             </div>
-            <p>Each one keeps its look. On the candle’s page, pick any flavour from the list.</p>
+            <p>Each one keeps its look. A few are poured in one scent. The others let you pick a flavour.</p>
           </div>
           <div className="catalog">
             {designs.map((candle) => (
